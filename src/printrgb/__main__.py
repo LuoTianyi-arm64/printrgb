@@ -3,9 +3,13 @@ import sys
 from . import printrgb
 
 def main() -> None:
-    arg_txt = " ".join(sys.argv[1:])
-    if arg_txt:
-        printrgb(arg_txt, rainbow = True)
+    argv = sys.argv
+    ask  = ''
+    if argv:
+        if len(argv) == 2:
+            if argv[1] in ['-h','--help']:
+                ask = 'Argvs of Using printrgb\nprintrgb(*values: object,\nforeground_color: list | tuple | None = None,\nbackground_color: list | tuple | None = None,\nsep: str = " ",\nrainbow: bool = False,\nangle_mode : Literal[\'inner\',\'init\',\'random\'] = \'random\',\nend: str = "\\n",\nfile : object | None = None,\nget_color : types.FunctionType | None = None,\nflush: Literal[False] = False'
+        printrgb(ask, rainbow = True)
     if not sys.stdin.isatty():
         printrgb(sys.stdin.read(), rainbow = True)
 
