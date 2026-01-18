@@ -60,7 +60,7 @@ class printrgb:
                                 j = i
                                 x += 1
                                 if x == get_terminal_width():
-                                    x = 1
+                                    x = 0
                                     y += 1
                                 printrgb(i,foreground_color=get_color(self.angle + x * 5 + y * 7),end = '',file = file)
                                 k = 0
@@ -76,7 +76,7 @@ class printrgb:
                             printrgb(i,foreground_color=get_color(self.angle + x * 5 + y * 7),end = '',file = file)
                             x += 1
                             if x == get_terminal_width():
-                                x = 1
+                                x = 0
                                 y += 1
                         else:
                             x = 1
@@ -102,7 +102,7 @@ class printrgb:
                                 j = i
                                 x += 1
                                 if x == get_terminal_width():
-                                    x = 1
+                                    x = 0
                                     y += 1
                                 printrgb(i,foreground_color=get_color(x * 5 + y * 7),end = '',file = file)
                                 k = 0
@@ -118,7 +118,7 @@ class printrgb:
                             printrgb(i,foreground_color=get_color(x * 5 + y * 7),end = '',file = file)
                             x += 1
                             if x == get_terminal_width():
-                                x = 1
+                                x = 0
                                 y += 1
                         else:
                             x = 1
@@ -145,7 +145,7 @@ class printrgb:
                                 j = i
                                 x += 1
                                 if x == get_terminal_width():
-                                    x = 1
+                                    x = 0
                                     y += 1
                                 printrgb(i,foreground_color=get_color(angle + x * 5 + y * 7),end = '',file = file)
                                 k = 0
@@ -161,7 +161,7 @@ class printrgb:
                             printrgb(i,foreground_color=get_color(angle + x * 5 + y * 7),end = '',file = file)
                             x += 1
                             if x == get_terminal_width():
-                                x = 1
+                                x = 0
                                 y += 1
                         else:
                             x = 1
