@@ -24,4 +24,4 @@ printrgb = "printrgb.__main__:main"
 
 
 [project.urls]
-Homepage = "https://github.com/LuoTainyi-arm64/printrgb"
+Homepage = "https://github.com/LuoTianyi-arm64/printrgb"
