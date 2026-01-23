@@ -25,7 +25,8 @@ class printrgb:
                 file : object | None = None,
                 get_color : types.FunctionType | None = None,
                 flush: Literal[False] = False,
-                swap_fbc: bool = False) -> None:
+                swap_fbc: bool = False,
+                allow_rainbow_blank: bool = False) -> None:
         get_color = get_color_default if get_color is None else get_color
         if not rainbow:
             esc = []
@@ -76,10 +77,13 @@ class printrgb:
                             else :
                                 j += i
                         elif i != '\n' :
-                            if i != ' ':
-                                printrgb(i,foreground_color=get_color(self.angle + x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                            if i == ' ' :
+                                if allow_rainbow_blank:
+                                    printrgb(i,foreground_color=get_color(self.angle + x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                else:
+                                    print(' ',end = '',file = file)
                             else:
-                                printrgb(i,foreground_color=get_color(self.angle + x * 5 + y * 7),end = '',file = file)
+                                printrgb(i,foreground_color=get_color(self.angle + x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
                             x += 1
                             if x == get_terminal_width():
                                 x = 0
@@ -121,10 +125,13 @@ class printrgb:
                             else :
                                 j += i
                         elif i != '\n' :
-                            if i != ' ':
-                                printrgb(i,foreground_color=get_color(x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                            if i == ' ' :
+                                if allow_rainbow_blank:
+                                    printrgb(i,foreground_color=get_color(x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                else:
+                                    print(' ',end = '',file = file)
                             else:
-                                printrgb(i,foreground_color=get_color( x * 5 + y * 7),end = '',file = file)
+                                printrgb(i,foreground_color=get_color(x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
                             x += 1
                             if x == get_terminal_width():
                                 x = 0
@@ -167,10 +174,13 @@ class printrgb:
                             else :
                                 j += i
                         elif i != '\n' :
-                            if i != ' ':
-                                printrgb(i,foreground_color=get_color(angle + x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                            if i == ' ' :
+                                if allow_rainbow_blank:
+                                    printrgb(i,foreground_color=get_color(angle + x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                else:
+                                    print(' ',end = '',file = file)
                             else:
-                                printrgb(i,foreground_color=get_color(angle + x * 5 + y * 7),end = '',file = file)
+                                printrgb(i,foreground_color=get_color(angle + x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
                             x += 1
                             if x == get_terminal_width():
                                 x = 0

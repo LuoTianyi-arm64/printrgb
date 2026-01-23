@@ -2,7 +2,7 @@
 import sys
 from . import printrgb
 
-version = "1.1.6"
+version = "1.1.7"
 
 def main() -> None:
     argv = sys.argv
@@ -10,7 +10,19 @@ def main() -> None:
     if argv:
         if len(argv) == 2:
             if argv[1] in ['-h','--help']:
-                ask = 'Argvs of Using printrgb\nprintrgb(*values: object,\nforeground_color: list | tuple | None = None,\nbackground_color: list | tuple | None = None,\nsep: str = " ",\nrainbow: bool = False,\nangle_mode : Literal[\'inner\',\'init\',\'random\'] = \'random\',\nend: str = "\\n",\nfile : object | None = None,\nget_color : types.FunctionType | None = None,\nflush: Literal[False] = False\nswap_fbc: bool = False'
+                ask = '''Argvs of Using printrgb
+                printrgb(*values: object,
+                foreground_color: list | tuple | None = None,
+                background_color: list | tuple | None = None,
+                sep: str = " ",
+                rainbow: bool = False,
+                angle_mode : Literal[\'inner\',\'init\',\'random\'] = \'random\',
+                end: str = "\\n",
+                file : object | None = None,
+                get_color : types.FunctionType | None = None,
+                flush: Literal[False] = False
+                swap_fbc: bool = False,
+                allow_rainbow_blank: bool = False(Using it when swap_fbc)'''
             elif argv[1] in ['-v','--version']:
                 ask = f'printrgb {version} by LuoTainyi-arm64'
         printrgb(ask, rainbow = True)
