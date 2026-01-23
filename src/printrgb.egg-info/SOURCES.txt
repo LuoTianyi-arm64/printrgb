@@ -4,6 +4,8 @@ pyproject.toml
 src/printrgb/__init__.py
 src/printrgb/__main__.py
 src/printrgb/printrgb.py
+src/printrgb/printrgb.pyi
+src/printrgb/py.typed
 src/printrgb.egg-info/PKG-INFO
 src/printrgb.egg-info/SOURCES.txt
 src/printrgb.egg-info/dependency_links.txt

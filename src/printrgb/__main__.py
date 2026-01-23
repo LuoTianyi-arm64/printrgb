@@ -2,7 +2,7 @@
 import sys
 from . import printrgb
 
-version = "1.1.7"
+version = "1.1.8"
 
 def main() -> None:
     argv = sys.argv
