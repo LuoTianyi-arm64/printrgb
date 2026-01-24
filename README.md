@@ -6,3 +6,5 @@ Print text in rainbow colors .
 pip install printrgb
 python -c "from printrgb import printrgb; printrgb('Hello, world!', rainbow=True)"
 ```
+
+You can also use '|'
