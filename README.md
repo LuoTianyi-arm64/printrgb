@@ -7,4 +7,4 @@ pip install printrgb
 python -c "from printrgb import printrgb; printrgb('Hello, world!', rainbow=True)"
 ```
 
-You can also use '|'
+You can also use '|' to pass sys.stdin
