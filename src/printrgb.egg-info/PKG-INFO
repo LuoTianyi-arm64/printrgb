@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: printrgb
-Version: 1.1.10
+Version: 1.2.0
 Summary: Print rainbow text in terminal with true-color
 Author-email: LuoTianyi-arm64 <2153585992@qq.com>
 License: # MIT License
@@ -43,3 +43,6 @@ Print text in rainbow colors .
 pip install printrgb
 python -c "from printrgb import printrgb; printrgb('Hello, world!', rainbow=True)"
 ```
+
+You can also use '|' to pass sys.stdin(rainbow mode)
+
