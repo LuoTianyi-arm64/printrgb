@@ -12,7 +12,7 @@ def get_terminal_width() -> None:
     return shutil.get_terminal_size().columns
 
 def get_color_default(angle:int)-> tuple:
-    return rainbow_color[angle % 360] # type: ignore
+    return rainbow_color[angle % 360]
 class printrgb:
     def __init__(self):
         self.angle = 0
@@ -43,7 +43,14 @@ class printrgb:
                 else:
                     colored_text = f'\033[{color_code}m{sep.join(map(str, values))}\033[0m'
             elif basic_color:
-                colored_text = f'\033[9{basic_color.get(background_color,)}m{sep.join(map(str, values))}\033[0m'
+                esc = []
+                printrgb(basic_color,foreground_color=[102,204,255])
+                printrgb(color.index(basic_color.get("foreground_color","white").lower()),foreground_color=[102,204,255])
+                if 'background_color' in basic_color:
+                    esc.append(f'4{color.index(basic_color.get("background_color","black").lower())}')
+                if 'foreground_color' in basic_color:
+                    esc.append(f'3{color.index(basic_color.get("foreground_color","white").lower())}')
+                colored_text = f'\033[{";".join(esc)}m{sep.join(map(str, values))}\033[0m'
             print(colored_text, sep = sep, end = end, file = file, flush = flush)
         else:
             if foreground_color or background_color:
@@ -58,6 +65,7 @@ class printrgb:
                     j = ''
                     k = 0
                     p = 0
+                    c = 1
                     for i in text:
                         p += 1
                         if i == '':
@@ -67,27 +75,46 @@ class printrgb:
                             if i == '[':
                                 j += i
                                 k = 2
+                                try:
+                                    if (text[p:p+3] in ['30m','31m','32m','33m','34m','35m','36m','37m','90m','91m','92m','93m','94m','95m','96m','97m','40m','41m','42m','43m','44m','45m','46m','47m']) or (text[p:p+4] in ['100m', '101m', '102m', '103m', '104m', '105m', '106m', '107m']):
+                                        c = 0
+                                    else:
+                                        c = 1
+                                except:
+                                    pass   
                             else :
                                 j = i
                                 x += 1
                                 if x == get_terminal_width():
                                     x = 0
                                     y += 1
-                                printrgb(i,foreground_color=get_color(self.angle + x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                if c:
+                                    printrgb(i,foreground_color=get_color(self.angle + x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                else:
+                                    print(i,end = '',file = file)
                                 k = 0
                         elif k > 1 :
                             if 64 <= ord(i) <= 126:
                                 j += i
-                                printrgb(j,foreground_color=get_color(self.angle + x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                if c:
+                                    printrgb(j,foreground_color=get_color(self.angle + x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                else:
+                                    print(i,end = '',file = file)
                                 j = ''
                                 k = 0
                             else :
                                 j += i
                         elif i != '\n' :
                             if i != ' ':
-                                printrgb(i,foreground_color=get_color(self.angle + x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                if c:
+                                    printrgb(i,foreground_color=get_color(self.angle + x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                else:
+                                    print(i,end = '',file = file)
                             else:
-                                printrgb(i,foreground_color=get_color(self.angle + x * 5 + y * 7),end = '',file = file)
+                                if c:
+                                    printrgb(i,foreground_color=get_color(self.angle + x * 5 + y * 7),end = '',file = file)
+                                else:
+                                    print(i,end = '',file = file)
                             x += 1
                             if x == get_terminal_width():
                                 x = 0
@@ -103,6 +130,7 @@ class printrgb:
                     j = ''
                     k = 0
                     p = 0
+                    c = 1
                     for i in text:
                         p += 1
                         if i == '':
@@ -112,27 +140,46 @@ class printrgb:
                             if i == '[':
                                 j += i
                                 k = 2
+                                try:
+                                    if (text[p:p+3] in ['30m','31m','32m','33m','34m','35m','36m','37m','90m','91m','92m','93m','94m','95m','96m','97m','40m','41m','42m','43m','44m','45m','46m','47m']) or (text[p:p+4] in ['100m', '101m', '102m', '103m', '104m', '105m', '106m', '107m']):
+                                        c = 0
+                                    else:
+                                        c = 1
+                                except:
+                                    pass   
                             else :
                                 j = i
                                 x += 1
                                 if x == get_terminal_width():
                                     x = 0
                                     y += 1
-                                printrgb(i,foreground_color=get_color(x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                if c:
+                                    printrgb(i,foreground_color=get_color(x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                else:
+                                    print(i,end = '',file = file)
                                 k = 0
                         elif k > 1 :
                             if 64 <= ord(i) <= 126:
                                 j += i
-                                printrgb(j,foreground_color=get_color(x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                if c:
+                                    printrgb(j,foreground_color=get_color(x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                else:
+                                    print(i,end = '',file = file)
                                 j = ''
                                 k = 0
                             else :
                                 j += i
                         elif i != '\n' :
                             if i != ' ':
-                                printrgb(i,foreground_color=get_color(x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                if c:
+                                    printrgb(i,foreground_color=get_color(x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                else:
+                                    print(i,end = '',file = file)
                             else:
-                                printrgb(i,foreground_color=get_color( x * 5 + y * 7),end = '',file = file)
+                                if c:
+                                    printrgb(i,foreground_color=get_color( x * 5 + y * 7),end = '',file = file)
+                                else:
+                                    print(i,end = '',file = file)
                             x += 1
                             if x == get_terminal_width():
                                 x = 0
@@ -149,6 +196,7 @@ class printrgb:
                     j = ''
                     k = 0
                     p = 0
+                    c = 1
                     for i in text:
                         p += 1
                         if i == '':
@@ -158,27 +206,46 @@ class printrgb:
                             if i == '[':
                                 j += i
                                 k = 2
+                                try:
+                                    if (text[p:p+3] in ['30m','31m','32m','33m','34m','35m','36m','37m','90m','91m','92m','93m','94m','95m','96m','97m','40m','41m','42m','43m','44m','45m','46m','47m']) or (text[p:p+4] in ['100m', '101m', '102m', '103m', '104m', '105m', '106m', '107m']):
+                                        c = 0
+                                    else:
+                                        c = 1
+                                except:
+                                    pass                                   
                             else :
                                 j = i
                                 x += 1
                                 if x == get_terminal_width():
                                     x = 0
                                     y += 1
-                                printrgb(i,foreground_color=get_color(angle + x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                if c:
+                                    printrgb(i,foreground_color=get_color(angle + x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                else:
+                                    print(i,end = '',file = file)
                                 k = 0
                         elif k > 1 :
                             if 64 <= ord(i) <= 126:
                                 j += i
-                                printrgb(j,foreground_color=get_color(angle + x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                if c:
+                                    printrgb(j,foreground_color=get_color(angle + x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                else:
+                                    print(j,end = '',file = file)
                                 j = ''
                                 k = 0
                             else :
                                 j += i
                         elif i != '\n' :
                             if i != ' ':
-                                printrgb(i,foreground_color=get_color(angle + x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                if c:
+                                    printrgb(i,foreground_color=get_color(angle + x * 5 + y * 7),end = '',file = file,swap_fbc = swap_fbc)
+                                else:
+                                    print(i,end = '',file = file)
                             else:
-                                printrgb(i,foreground_color=get_color(angle + x * 5 + y * 7),end = '',file = file)
+                                if c:
+                                    printrgb(i,foreground_color=get_color(angle + x * 5 + y * 7),end = '',file = file)
+                                else:
+                                    print(i,end = '',file = file)
                             x += 1
                             if x == get_terminal_width():
                                 x = 0
