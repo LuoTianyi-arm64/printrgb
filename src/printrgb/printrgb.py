@@ -31,6 +31,7 @@ class printrgb:
                 swap_fbc: bool = False) -> None:
         get_color = get_color_default if get_color is None else get_color
         if not rainbow:
+            colored_text = ''
             if foreground_color or background_color:
                 esc = []
                 if foreground_color:
