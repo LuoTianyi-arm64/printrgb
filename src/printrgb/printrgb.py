@@ -2,6 +2,7 @@ import types
 import random
 import shutil
 from typing import Literal
+from typing import TextIO
 
 # const
 rainbow_color = [
@@ -386,7 +387,7 @@ color = [
 ]
 
 
-def get_terminal_width() -> None:
+def get_terminal_width() -> int:
     return shutil.get_terminal_size().columns
 
 
@@ -394,7 +395,7 @@ def get_color_default(angle: int) -> tuple:
     return rainbow_color[angle % 360]
 
 
-class printrgb:
+class print_rgb:
     def __init__(self):
         self.angle = 0
 
@@ -408,7 +409,7 @@ class printrgb:
         rainbow: bool = False,
         angle_mode: Literal["inner", "init", "random"] = "random",
         end: str = "\n",
-        file: object | None = None,
+        file: TextIO | None = None,
         get_color: types.FunctionType | None = None,
         flush: Literal[False] = False,
         swap_fbc: bool = False,
@@ -544,7 +545,7 @@ class printrgb:
                                     x = 0
                                     y += 1
                                 if escape_character:
-                                    printrgb(
+                                    self(
                                         current_char,
                                         foreground_color=get_color(
                                             self.angle + x * 5 + y * 7
@@ -560,7 +561,7 @@ class printrgb:
                             if 64 <= ord(current_char) <= 126:
                                 temp_string += current_char
                                 if escape_character:
-                                    printrgb(
+                                    self(
                                         temp_string,
                                         foreground_color=get_color(
                                             self.angle + x * 5 + y * 7
@@ -578,7 +579,7 @@ class printrgb:
                         elif current_char != "\n":
                             if current_char != " ":
                                 if escape_character:
-                                    printrgb(
+                                    self(
                                         current_char,
                                         foreground_color=get_color(
                                             self.angle + x * 5 + y * 7
@@ -591,7 +592,7 @@ class printrgb:
                                     print(current_char, end="", file=file)
                             else:
                                 if escape_character:
-                                    printrgb(
+                                    self(
                                         current_char,
                                         foreground_color=get_color(
                                             self.angle + x * 5 + y * 7
@@ -678,7 +679,7 @@ class printrgb:
                                     x = 0
                                     y += 1
                                 if escape_character:
-                                    printrgb(
+                                    self(
                                         current_char,
                                         foreground_color=get_color(x * 5 + y * 7),
                                         end="",
@@ -692,7 +693,7 @@ class printrgb:
                             if 64 <= ord(current_char) <= 126:
                                 temp_string += current_char
                                 if escape_character:
-                                    printrgb(
+                                    self(
                                         temp_string,
                                         foreground_color=get_color(x * 5 + y * 7),
                                         end="",
@@ -708,7 +709,7 @@ class printrgb:
                         elif current_char != "\n":
                             if current_char != " ":
                                 if escape_character:
-                                    printrgb(
+                                    self(
                                         current_char,
                                         foreground_color=get_color(x * 5 + y * 7),
                                         end="",
@@ -719,7 +720,7 @@ class printrgb:
                                     print(current_char, end="", file=file)
                             else:
                                 if escape_character:
-                                    printrgb(
+                                    self(
                                         current_char,
                                         foreground_color=get_color(x * 5 + y * 7),
                                         end="",
@@ -805,7 +806,7 @@ class printrgb:
                                     x = 0
                                     y += 1
                                 if escape_character:
-                                    printrgb(
+                                    self(
                                         current_char,
                                         foreground_color=get_color(
                                             angle + x * 5 + y * 7
@@ -821,7 +822,7 @@ class printrgb:
                             if 64 <= ord(current_char) <= 126:
                                 temp_string += current_char
                                 if escape_character:
-                                    printrgb(
+                                    self(
                                         temp_string,
                                         foreground_color=get_color(
                                             angle + x * 5 + y * 7
@@ -839,7 +840,7 @@ class printrgb:
                         elif current_char != "\n":
                             if current_char != " ":
                                 if escape_character:
-                                    printrgb(
+                                    self(
                                         current_char,
                                         foreground_color=get_color(
                                             angle + x * 5 + y * 7
@@ -852,7 +853,7 @@ class printrgb:
                                     print(current_char, end="", file=file)
                             else:
                                 if escape_character:
-                                    printrgb(
+                                    self(
                                         current_char,
                                         foreground_color=get_color(
                                             angle + x * 5 + y * 7
@@ -872,5 +873,3 @@ class printrgb:
                             print("", file=file)
                 print(end, end="", file=file)
 
-
-printrgb = printrgb()

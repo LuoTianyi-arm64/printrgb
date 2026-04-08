@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "printrgb"
-version = "1.2.3"
+version = "1.2.4"
 description = "Print rainbow text in terminal with true-color"
 readme = "README.md"
 license = {file = "LICENSE"}
@@ -26,3 +26,9 @@ printrgb = ["py.typed", "*.pyi"]
 
 [project.urls]
 Homepage = "https://github.com/LuoTianyi-arm64/printrgb"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
