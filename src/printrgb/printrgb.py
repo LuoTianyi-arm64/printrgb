@@ -465,7 +465,9 @@ class print_rgb:
                 colored_text = (
                     f'\033[{";".join(esc)}m{sep.join(map(str, values))}\033[0m'
                 )
-            print(colored_text, sep=sep, end=end, file=file, flush=flush)
+            else:
+                colored_text=sep.join(values)
+            print(colored_text, end=end, file=file, flush=flush)
         else:
             if foreground_color or background_color:
                 print(

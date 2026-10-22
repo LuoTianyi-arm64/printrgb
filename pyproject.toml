@@ -1,10 +1,10 @@
 [build-system]
-requires      = ["setuptools>=61", "wheel"]
+requires      = ["setuptools>=61", "wheel", "build"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "printrgb"
-version = "1.2.4"
+version = "1.3.0"
 description = "Print rainbow text in terminal with true-color"
 readme = "README.md"
 license = {file = "LICENSE"}

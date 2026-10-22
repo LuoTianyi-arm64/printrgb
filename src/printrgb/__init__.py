@@ -2,7 +2,7 @@ import sys
 from .printrgb import print_rgb # type: ignore
 
 __all__ = ["print_rgb", "printrgb"]
-__version__ = "1.2.4"
+__version__ = "1.3.0"
 
 printrgb = print_rgb()
 

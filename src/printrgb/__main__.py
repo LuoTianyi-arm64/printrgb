@@ -1,7 +1,7 @@
 import sys
 from . import printrgb
 
-version = "1.2.4"
+version = "1.3.0"
 
 
 def main() -> None:
